@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #706d67;
+    font-family: 'Kaushan Script', cursive;
+}
+
+.container1 {
+    position: absolute;
+    top: 4px;
+}
+
+.container2 {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 70px;
+}
+
+.notes_card {
+    width: 230px;
+    height: 230px;
+    box-shadow: 10px 10px 24px 0px rgb(0, 0, 0, 0.75);
+    padding: 19px 16px;
+}
+
+.container3 {
+    position: absolute;
+    top: 30%;
+    left: 40%;
+}
+
+#note-text {
+    width: 227px;
+    height: 227px;
+    outline: none;
+    border: none;
+    box-shadow: 10px 10px 24px 0px rgb(0, 0, 0, 0.75);
+    padding: 39px 1px 0px 40px;
+}
+
+#check-icon {
+    position: absolute;
+    top: 8px;
+    right: 31px;
+    cursor: pointer;
+}
+
+#cross-icon {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    cursor: pointer;
+}
