@@ -36,7 +36,7 @@ cross_icon.addEventListener('click', () => {
 
 //gives random margin to notes
 function margin() {
-    let random_margin = ["-5px", "1px", "5px", "10px", "15px", "20px"];
+    let random_margin = ["18px", "11px", "13px", "10px", "15px", "20px"];
 
     return random_margin[Math.floor(Math.random() * random_margin.length)];
 }
@@ -76,8 +76,13 @@ function showNotes() {
     let notes_container = document.querySelector('.container2');
     let html = "";
     notes_obj.forEach((element, index) => {
-        html += `<div id="${index}" class="notes_card" ondblclick="deleteNote(this.id)">
-                   <h5> ${element} </h5>
+        html += `<div id="${index}" class="notes_card">
+                   <h5 id="content-${index}" class="content"> ${element} </h5>
+                   <svg class="cross_notes_btn" onclick="deleteNote(parentNode.id)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                   </svg>
+                  <img id="note-btn-edit-${index}" class = "edit_btn" width="16px" height="16px" src="edit_button.svg" onclick="changeButton(parentNode.id, this.id)">
                  </div>`;
     });
     notes_container.innerHTML = html;
@@ -108,4 +113,28 @@ function deleteNote(index) {
     notes_obj.splice(index, 1);
     localStorage.setItem("notes", JSON.stringify(notes_obj));
     showNotes();
+}
+
+//showing edit and save button on clicking the notes
+function changeButton(index, btn_id) {
+    let note_btn = document.getElementById(btn_id);
+    let content = document.getElementById(`content-${index}`);
+
+    if (note_btn.id === `note-btn-edit-${index}`) {
+        content.setAttribute("contenteditable", "true");
+        note_btn.src = "check_button.svg";
+        note_btn.id = `note-btn-check-${index}`;
+    } else {
+        let notes = localStorage.getItem("notes");
+        if (notes == null) {
+            notes_obj = [];
+        } else {
+            notes_obj = JSON.parse(notes);
+        }
+        notes_obj[index] = content.innerText;
+        localStorage.setItem("notes", JSON.stringify(notes_obj));
+        content.setAttribute("contenteditable", "false");
+        note_btn.id = `note-btn-edit-${index}`;
+        note_btn.src = "edit_button.svg";
+    }
 }
