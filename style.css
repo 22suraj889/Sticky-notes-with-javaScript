@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+[contenteditable] {
+    outline: 0px solid transparent;
+}
+
 body {
     background-color: #706d67;
     font-family: 'Kaushan Script', cursive;
@@ -39,7 +43,7 @@ body {
     outline: none;
     border: none;
     box-shadow: 10px 10px 24px 0px rgb(0, 0, 0, 0.75);
-    padding: 39px 1px 0px 40px;
+    padding: 36px 9px 0px 9px;
 }
 
 #check-icon {
@@ -49,9 +53,26 @@ body {
     cursor: pointer;
 }
 
-#cross-icon {
+#cross-icon,
+.cross_notes_btn {
     position: absolute;
     top: 8px;
     right: 5px;
     cursor: pointer;
+}
+
+.edit_btn {
+    position: absolute;
+    top: 8px;
+    right: 29px;
+    cursor: pointer;
+}
+
+.buttons {
+    display: none;
+}
+
+.content {
+    margin-top: 10px;
+    word-wrap: break-word;
 }
