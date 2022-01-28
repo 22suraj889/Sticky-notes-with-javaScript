@@ -11,6 +11,8 @@
 body {
     background-color: #706d67;
     font-family: 'Kaushan Script', cursive;
+    width: 800px;
+    height: 800px;
 }
 
 .container1 {
@@ -75,4 +77,11 @@ body {
 .content {
     margin-top: 10px;
     word-wrap: break-word;
+}
+
+.textarea {
+    width: 198px;
+    height: 166px;
+    resize: none;
+    border: none;
 }
