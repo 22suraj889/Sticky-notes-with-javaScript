@@ -14,11 +14,11 @@ create_note_btn.addEventListener('click', () => {
 let check_icon = document.getElementById('check-icon');
 check_icon.addEventListener('click', () => {
     let notes = localStorage.getItem("notes");
-    let note_text = document.getElementById("note-text");
+    note_text = document.getElementById("note-text");
     if (notes == null) {
-        notes_obj = [];
+        let notes_obj = [];
     } else {
-        notes_obj = JSON.parse(notes);
+        let notes_obj = JSON.parse(notes);
     }
     notes_obj.push(note_text.value);
     localStorage.setItem("notes", JSON.stringify(notes_obj));
@@ -121,10 +121,17 @@ function changeButton(index, btn_id) {
     let content = document.getElementById(`content-${index}`);
 
     if (note_btn.id === `note-btn-edit-${index}`) {
-        content.setAttribute("contenteditable", "true");
+        let numberOfTextArea = document.getElementsByClassName('textarea').length;
+        let editableNoteCardColor = content.parentNode.style.background;
+        if (numberOfTextArea == 0) {
+            let html = content.innerHTML;
+            content.innerHTML = `<textarea maxlength="80" style="background-color:${editableNoteCardColor};" onfocus="this.value = this.value;" class="textarea form-control" id="floatingTextarea">${html}</textarea>`;
+        }
         note_btn.src = "check_button.svg";
         note_btn.id = `note-btn-check-${index}`;
     } else {
+        let textarea = document.querySelector('.textarea');
+        content.innerHTML = textarea.value;
         let notes = localStorage.getItem("notes");
         if (notes == null) {
             notes_obj = [];
@@ -133,7 +140,6 @@ function changeButton(index, btn_id) {
         }
         notes_obj[index] = content.innerText;
         localStorage.setItem("notes", JSON.stringify(notes_obj));
-        content.setAttribute("contenteditable", "false");
         note_btn.id = `note-btn-edit-${index}`;
         note_btn.src = "edit_button.svg";
     }
